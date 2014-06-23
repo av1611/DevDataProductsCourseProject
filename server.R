@@ -32,16 +32,18 @@ shinyServer(
   function(input, output) {
     height <- reactive({ as.numeric(input$height) })
     sex <- reactive({ as.numeric(input$sex) })
-    output$w1 <- renderText({ if(height() > cm5feet) paste(w1(sex(), height()),
-                                                           "kg",
-                                                           " is your ideal weight according to the Robinson formula (1983)") else "" })
-    output$w2 <- renderText({ if(height() > cm5feet) paste(w2(sex(), height()),
-                                                           "kg",
-                                                           " is your ideal weight according to the Hamwi formula (1964)") else "" })
+    output$w1 <- renderText({
+      if(height() > cm5feet) paste(w1(sex(), height()),
+                                   "kg",
+                                   " is your ideal weight according to the Robinson formula (1983)") else "" })
+    output$w2 <- renderText({
+      if(height() > cm5feet) paste(w2(sex(), height()),
+                                   "kg",
+                                   " is your ideal weight according to the Hamwi formula (1964)") else "" })
     output$w3 <- renderText({ 
       w <- w3(sex(), height())
       paste(w[1], "kg - ", w[2],
-            "kg is your recommended weight according to the health recommendations")
+            "kg is the range of your recommended weight according to the health recommendations")
     })
   }
 )
